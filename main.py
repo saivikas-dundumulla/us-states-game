@@ -27,5 +27,3 @@ while do_play:
         answers.append(answer_state)
         scribble.goto(df.x.item(), df.y.item())
         scribble.write(answer_state)
-
-screen.exitonclick()
