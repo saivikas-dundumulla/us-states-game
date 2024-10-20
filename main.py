@@ -20,16 +20,12 @@ scribble.hideturtle()
 scribble.penup()
 while do_play:
     answer_state = screen.textinput(title=f"{len(answers)}/50 States Correct", prompt="what's another state name").title()
-    print(answer_state)
     df = data[data.state == answer_state]
     if answer_state.lower() == "exit":
         break
-    elif df.empty or answer_state in answers:
-        continue
-    answers.append(answer_state)
-    x_cor = df.x.iloc[0]
-    y_cor = df.y.iloc[0]
-    scribble.goto(x_cor, y_cor)
-    scribble.write(answer_state)
+    elif not (df.empty or answer_state in answers):
+        answers.append(answer_state)
+        scribble.goto(df.x.item(), df.y.item())
+        scribble.write(answer_state)
 
 screen.exitonclick()
